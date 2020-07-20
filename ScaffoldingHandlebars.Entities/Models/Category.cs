@@ -10,9 +10,9 @@ namespace ScaffoldingHandlebars.Entities.Models
             Product = new List<Product>();
         }
 
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        public int CategoryId { get; set; } = default!;
+        public string CategoryName { get; set; } = default!;
 
-        public virtual List<Product> Product { get; set; }
+        public virtual List<Product> Product { get; set; } = default!;
     }
 }

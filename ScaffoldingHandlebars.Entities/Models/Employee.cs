@@ -10,14 +10,14 @@ namespace ScaffoldingHandlebars.Entities.Models
             EmployeeTerritories = new List<EmployeeTerritories>();
         }
 
-        public int EmployeeId { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
+        public int EmployeeId { get; set; } = default!;
+        public string LastName { get; set; } = default!;
+        public string FirstName { get; set; } = default!;
         public DateTime? BirthDate { get; set; }
         public DateTime? HireDate { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
+        public string? City { get; set; }
+        public string? Country { get; set; }
 
-        public virtual List<EmployeeTerritories> EmployeeTerritories { get; set; }
+        public virtual List<EmployeeTerritories> EmployeeTerritories { get; set; } = default!;
     }
 }

@@ -7,7 +7,10 @@ namespace ScaffoldingHandlebars.Tooling
     {
         public void ConfigureDesignTimeServices(IServiceCollection services)
         {
-            services.AddHandlebarsScaffolding();
+            services.AddHandlebarsScaffolding(options =>
+            {
+                options.EnableNullableReferenceTypes = true;
+            });
         }
     }
 }

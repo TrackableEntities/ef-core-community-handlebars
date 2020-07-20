@@ -13,16 +13,16 @@ namespace ScaffoldingHandlebars.Entities.Models
             Order = new List<Order>();
         }
 
-        public string CustomerId { get; set; }
+        public string CustomerId { get; set; } = default!;
         /// <summary>
         /// hello CompanyName
         /// </summary>
-        public string CompanyName { get; set; }
-        public string ContactName { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
+        public string CompanyName { get; set; } = default!;
+        public string? ContactName { get; set; }
+        public string? City { get; set; }
+        public string? Country { get; set; }
 
-        public virtual CustomerSetting CustomerSetting { get; set; }
-        public virtual List<Order> Order { get; set; }
+        public virtual CustomerSetting CustomerSetting { get; set; } = default!;
+        public virtual List<Order> Order { get; set; } = default!;
     }
 }

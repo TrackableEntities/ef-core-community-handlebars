@@ -10,14 +10,14 @@ namespace ScaffoldingHandlebars.Entities.Models
             OrderDetail = new List<OrderDetail>();
         }
 
-        public int ProductId { get; set; }
-        public string ProductName { get; set; }
+        public int ProductId { get; set; } = default!;
+        public string ProductName { get; set; } = default!;
         public int? CategoryId { get; set; }
         public decimal? UnitPrice { get; set; }
-        public bool Discontinued { get; set; }
-        public byte[] RowVersion { get; set; }
+        public bool Discontinued { get; set; } = default!;
+        public byte[]? RowVersion { get; set; }
 
-        public virtual Category Category { get; set; }
-        public virtual List<OrderDetail> OrderDetail { get; set; }
+        public virtual Category Category { get; set; } = default!;
+        public virtual List<OrderDetail> OrderDetail { get; set; } = default!;
     }
 }

@@ -88,7 +88,25 @@ Demos for July 2020 EF Core Community Standup
    - Make sure you are in the **.Tooling** project directory.
    - Specify connection string, EF Core SQL Server provider, and target project.
    - `DbContext` can be generated in the **.Data** project by specifying the `--context-dir` argument.
-   - Entities can be generated in a separate project by specifying the `--project` argument.
+   - Entities can be generated in a separate project by specifying the `--project` argument and specifying the **.Entities** project.
     ```bash
     dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=NorthwindSlim; Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -o Models -c NorthwindSlimContext --context-dir ../ScaffoldingHandlebars.Data/Contexts --project ../ScaffoldingHandlebars.Entities --force
     ```
+
+### 4. Enable Nullable Reference Types
+
+1. Upgrade both the **.Data** and **.Entities** projects to .NET Standard **version 2.1**.
+   - Either edit the **.csproj** files directory or select Target Framework on the _Application_ tab of the project properties page in Visual Studio.
+2. Enable **Nullable** for both the **.Data** and **.Entities** projects.
+   - Either edit the **.csproj** files directory or select Target Framework on the _Build_ tab of the project properties page in Visual Studio.
+3. Update `services.AddHandlebarsScaffolding` in `ScaffoldingDesignTimeServices` in the **.Tooling** project to enable nullable reference types.
+   ```csharp
+   services.AddHandlebarsScaffolding(options =>
+   {
+      options.EnableNullableReferenceTypes = true;
+   });
+   ```
+4. Run the `dotnet ef dbcontext scaffold` command.
+   - Use the same command as shown above.
+   - Notive that _optional_ properties for reference types are set to [nullable](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) by appending a `?` to the type.
+   - Notice that _required_ properties are set using the [null forgiving operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-forgiving), which eliminates compiler warnings.

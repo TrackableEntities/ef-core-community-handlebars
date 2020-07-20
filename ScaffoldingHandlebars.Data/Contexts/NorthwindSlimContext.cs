@@ -7,15 +7,15 @@ namespace ScaffoldingHandlebars.Entities
 {
     public partial class NorthwindSlimContext : DbContext
     {
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<CustomerSetting> CustomerSetting { get; set; }
-        public virtual DbSet<Employee> Employee { get; set; }
-        public virtual DbSet<EmployeeTerritories> EmployeeTerritories { get; set; }
-        public virtual DbSet<Order> Order { get; set; }
-        public virtual DbSet<OrderDetail> OrderDetail { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<Territory> Territory { get; set; }
+        public virtual DbSet<Category> Category { get; set; } = default!;
+        public virtual DbSet<Customer> Customer { get; set; } = default!;
+        public virtual DbSet<CustomerSetting> CustomerSetting { get; set; } = default!;
+        public virtual DbSet<Employee> Employee { get; set; } = default!;
+        public virtual DbSet<EmployeeTerritories> EmployeeTerritories { get; set; } = default!;
+        public virtual DbSet<Order> Order { get; set; } = default!;
+        public virtual DbSet<OrderDetail> OrderDetail { get; set; } = default!;
+        public virtual DbSet<Product> Product { get; set; } = default!;
+        public virtual DbSet<Territory> Territory { get; set; } = default!;
 
         public NorthwindSlimContext(DbContextOptions<NorthwindSlimContext> options) : base(options)
         {

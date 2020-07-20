@@ -5,14 +5,14 @@ namespace ScaffoldingHandlebars.Entities.Models
 {
     public partial class OrderDetail : EntityBase
     {
-        public int OrderDetailId { get; set; }
-        public int OrderId { get; set; }
-        public int ProductId { get; set; }
-        public decimal UnitPrice { get; set; }
-        public short Quantity { get; set; }
-        public float Discount { get; set; }
+        public int OrderDetailId { get; set; } = default!;
+        public int OrderId { get; set; } = default!;
+        public int ProductId { get; set; } = default!;
+        public decimal UnitPrice { get; set; } = default!;
+        public short Quantity { get; set; } = default!;
+        public float Discount { get; set; } = default!;
 
-        public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual Order Order { get; set; } = default!;
+        public virtual Product Product { get; set; } = default!;
     }
 }
