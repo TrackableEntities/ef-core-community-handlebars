@@ -40,8 +40,10 @@ Demos for July 2020 EF Core Community Standup
 2. Right-click on **ScaffoldingHandlebars.Entities** project in the Solution Explorer, select EF Core Power Tools, Reverse Engineer.
    - Choose the NorthwindSlim data connection.
    - Select all tables.
+   - What to generate: **Entity Types only**
    - Check: Customize code using Handlebars templates.
    - Select **TypeScript** as the language.
+    ![efcpt-rev-eng-ts](images/efcpt-rev-eng-ts.png)
 
 ### 3. EF Core CLI with Handlebars Templates
 
@@ -54,17 +56,19 @@ Demos for July 2020 EF Core Community Standup
     dotnet tool update --global dotnet-ef
     ```
 2. Delete the CodeTemplates, Contexts and Models folders from the **.Entities** project.
-3. Create a **.NET Core** library project with a **.Tooling** suffix.
+3. Create a **.NET Standard** project with a **.Data** suffix.
+   - This is where the `DbContext` class will be generated.
+4. Create a **.NET Core** library project with a **.Tooling** suffix.
    - The tools need the .NET Core runtime to execute, so a .NET Standard project cannot be used by the tooling.
    - However, entities can be generated in a separate project by specifying the `--project` argument.
-4. Reference the **ScaffoldingHandlebars.Entities** project.
-5. Add EF Core Design, SQL Server and Scaffolding.Handlebars packages.
+5. Reference the **ScaffoldingHandlebars.Entities** project.
+6. Add EF Core Design, SQL Server and Scaffolding.Handlebars packages.
     ```bash
     dotnet add package Microsoft.EntityFrameworkCore.Design
     dotnet add package Microsoft.EntityFrameworkCore.SqlServer
     dotnet add package EntityFrameworkCore.Scaffolding.Handlebars
     ```
-6. Add a `ScaffoldingDesignTimeServices` class that implements `IDesignTimeServices`.
+7. Add a `ScaffoldingDesignTimeServices` class that implements `IDesignTimeServices`.
     ```csharp
     public class ScaffoldingDesignTimeServices : IDesignTimeServices
     {
@@ -74,7 +78,7 @@ Demos for July 2020 EF Core Community Standup
         }
     }
     ```
-7. Run the `dotnet ef dbcontext scaffold` command.
+8. Run the `dotnet ef dbcontext scaffold` command.
    - Make sure you are in the **.Tooling** project directory.
    - Specify connection string, EF Core SQL Server provider, and target project.
     ```bash
