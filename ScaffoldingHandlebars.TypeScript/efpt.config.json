@@ -6,11 +6,11 @@
    "IdReplace": false,
    "IncludeConnectionString": false,
    "ModelNamespace": null,
-   "OutputContextPath": "Contexts",
+   "OutputContextPath": "",
    "OutputPath": "Models",
    "ProjectRootNamespace": "ScaffoldingHandlebars.TypeScript",
    "SelectedHandlebarsLanguage": 1,
-   "SelectedToBeGenerated": 0,
+   "SelectedToBeGenerated": 2,
    "Tables": [
       {
          "HasPrimaryKey": true,
