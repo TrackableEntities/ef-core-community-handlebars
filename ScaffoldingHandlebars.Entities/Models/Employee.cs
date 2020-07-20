@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ScaffoldingHandlebars.Entities.Models
 {
-    public partial class Employee
+    public partial class Employee : EntityBase
     {
         public Employee()
         {
-            EmployeeTerritories = new HashSet<EmployeeTerritories>();
+            EmployeeTerritories = new List<EmployeeTerritories>();
         }
 
         public int EmployeeId { get; set; }
@@ -18,6 +18,6 @@ namespace ScaffoldingHandlebars.Entities.Models
         public string City { get; set; }
         public string Country { get; set; }
 
-        public virtual ICollection<EmployeeTerritories> EmployeeTerritories { get; set; }
+        public virtual List<EmployeeTerritories> EmployeeTerritories { get; set; }
     }
 }

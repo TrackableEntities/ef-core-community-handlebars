@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace ScaffoldingHandlebars.Entities.Models
 {
-    public partial class Order
+    public partial class Order : EntityBase
     {
         public Order()
         {
-            OrderDetail = new HashSet<OrderDetail>();
+            OrderDetail = new List<OrderDetail>();
         }
 
         public int OrderId { get; set; }
@@ -18,6 +18,6 @@ namespace ScaffoldingHandlebars.Entities.Models
         public decimal? Freight { get; set; }
 
         public virtual Customer Customer { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+        public virtual List<OrderDetail> OrderDetail { get; set; }
     }
 }

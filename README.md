@@ -28,10 +28,12 @@ Demos for July 2020 EF Core Community Standup
    - Select all tables.
    - Check: Customize code using Handlebars templates.
     ![efcpt-rev-eng](images/efcpt-rev-eng.png)
-4. Modify the **Class.hbs** file to derive from `EntityBase`.
+4. Modify Handlebars templates to control code generation.
+   - Modify the **CSharpEntityType/Class.hbs** file to derive from `EntityBase`.
    - Add `EntityBase` class to the project.
-5. Modify **Partials/Properties.hbs** to change `ICollection` to `List`.
-   - Update **Constructor.hbs** to change `HashSet` to `List`
+   - Modify **CSharpEntityType/Partials/Properties.hbs** to change `ICollection` to `List`.
+   - Update **CSharpEntityType/Partials/Constructor.hbs** to change `HashSet` to `List`.
+   - Remove `connectionstring-warning` from **CSharpDbContext/Partials/DbOnConfiguring.hbs**
    - Rerun the EF Core Power Tools.
 
 ### 2. EF Core Power Tools with Handlbars Templates (TypeScript)
@@ -58,10 +60,14 @@ Demos for July 2020 EF Core Community Standup
 2. Delete the CodeTemplates, Contexts and Models folders from the **.Entities** project.
 3. Create a **.NET Standard** project with a **.Data** suffix.
    - This is where the `DbContext` class will be generated.
+   - Reference the **.Entities** project from the **.Data** project.
+   - Add EF Core SQL Server package.
+    ```bash
+    dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+    ```
 4. Create a **.NET Core** library project with a **.Tooling** suffix.
-   - The tools need the .NET Core runtime to execute, so a .NET Standard project cannot be used by the tooling.
-   - However, entities can be generated in a separate project by specifying the `--project` argument.
-5. Reference the **ScaffoldingHandlebars.Entities** project.
+   - The tools need the _.NET Core runtime_ to execute, so a .NET Standard project cannot be used by the tooling.
+5. Reference the **.Entities** project from the **.Tooling** project.
 6. Add EF Core Design, SQL Server and Scaffolding.Handlebars packages.
     ```bash
     dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -81,6 +87,8 @@ Demos for July 2020 EF Core Community Standup
 8. Run the `dotnet ef dbcontext scaffold` command.
    - Make sure you are in the **.Tooling** project directory.
    - Specify connection string, EF Core SQL Server provider, and target project.
+   - `DbContext` can be generated in the **.Data** project by specifying the `--context-dir` argument.
+   - Entities can be generated in a separate project by specifying the `--project` argument.
     ```bash
-    dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=NorthwindSlim; Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -o Models -c NorthwindSlimContext --context-dir Contexts --project ../ScaffoldingHandlebars.Entities --force
+    dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB; Initial Catalog=NorthwindSlim; Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -o Models -c NorthwindSlimContext --context-dir ../ScaffoldingHandlebars.Data/Contexts --project ../ScaffoldingHandlebars.Entities --force
     ```

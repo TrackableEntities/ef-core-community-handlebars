@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ScaffoldingHandlebars.Entities.Models;
 
-namespace ScaffoldingHandlebars.Entities.Contexts
+namespace ScaffoldingHandlebars.Entities
 {
     public partial class NorthwindSlimContext : DbContext
     {
@@ -25,7 +25,6 @@ namespace ScaffoldingHandlebars.Entities.Contexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog=NorthwindSlim; Integrated Security=True");
             }
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ScaffoldingHandlebars.Entities.Models
 {
-    public partial class OrderDetail
+    public partial class OrderDetail : EntityBase
     {
         public int OrderDetailId { get; set; }
         public int OrderId { get; set; }

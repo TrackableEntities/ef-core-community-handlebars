@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace ScaffoldingHandlebars.Entities.Models
 {
-    public partial class Category
+    public partial class Category : EntityBase
     {
         public Category()
         {
-            Product = new HashSet<Product>();
+            Product = new List<Product>();
         }
 
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
 
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual List<Product> Product { get; set; }
     }
 }

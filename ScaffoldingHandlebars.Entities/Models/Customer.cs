@@ -6,11 +6,11 @@ namespace ScaffoldingHandlebars.Entities.Models
     /// <summary>
     /// hello table Customer
     /// </summary>
-    public partial class Customer
+    public partial class Customer : EntityBase
     {
         public Customer()
         {
-            Order = new HashSet<Order>();
+            Order = new List<Order>();
         }
 
         public string CustomerId { get; set; }
@@ -23,6 +23,6 @@ namespace ScaffoldingHandlebars.Entities.Models
         public string Country { get; set; }
 
         public virtual CustomerSetting CustomerSetting { get; set; }
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual List<Order> Order { get; set; }
     }
 }
