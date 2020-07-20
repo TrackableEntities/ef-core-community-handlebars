@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScaffoldingHandlebars.Entities", "ScaffoldingHandlebars.Entities\ScaffoldingHandlebars.Entities.csproj", "{7734EF76-A053-43E5-AA97-78782BA7D268}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58A79008-6821-4CD2-9C2B-074577919CE2}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScaffoldingHandlebars.Tooling", "ScaffoldingHandlebars.Tooling\ScaffoldingHandlebars.Tooling.csproj", "{A4686899-1325-4E8A-8F20-3F6F9B9B8DEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScaffoldingHandlebars.TypeScript", "ScaffoldingHandlebars.TypeScript\ScaffoldingHandlebars.TypeScript.csproj", "{6410EA9B-3389-47D9-8C28-C216C69B2132}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7734EF76-A053-43E5-AA97-78782BA7D268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7734EF76-A053-43E5-AA97-78782BA7D268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7734EF76-A053-43E5-AA97-78782BA7D268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7734EF76-A053-43E5-AA97-78782BA7D268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4686899-1325-4E8A-8F20-3F6F9B9B8DEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4686899-1325-4E8A-8F20-3F6F9B9B8DEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4686899-1325-4E8A-8F20-3F6F9B9B8DEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4686899-1325-4E8A-8F20-3F6F9B9B8DEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6410EA9B-3389-47D9-8C28-C216C69B2132}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6410EA9B-3389-47D9-8C28-C216C69B2132}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6410EA9B-3389-47D9-8C28-C216C69B2132}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6410EA9B-3389-47D9-8C28-C216C69B2132}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B53CA27-138D-4A0E-BD70-03907E579DF5}
+	EndGlobalSection
+EndGlobal
