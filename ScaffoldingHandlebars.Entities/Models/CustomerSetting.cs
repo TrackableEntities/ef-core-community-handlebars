@@ -5,7 +5,7 @@ namespace ScaffoldingHandlebars.Entities.Models
 {
     public partial class CustomerSetting : EntityBase // My Handlebars Helper: CustomerSetting
     {
-        public string CustomerId { get; set; } = default!;
+        public string CustomerId { get; set; } = default!; // Primary Key
         public string Setting { get; set; } = default!;
 
         public virtual Customer Customer { get; set; } = default!;

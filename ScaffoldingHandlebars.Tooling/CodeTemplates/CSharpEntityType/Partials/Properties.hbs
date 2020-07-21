@@ -7,7 +7,7 @@
 {{#each property-annotations}}
 {{spaces 8}}{{{property-annotation}}}
 {{/each}}
-{{spaces 8}}public {{property-type}} {{property-name}} { get; set; }{{#if nullable-reference-types }}{{#unless property-isnullable}} = default!;{{/unless}}{{/if}}
+{{spaces 8}}public {{property-type}} {{property-name}} { get; set; }{{#if nullable-reference-types}}{{#unless property-isnullable}} = default!;{{/unless}}{{/if}}{{#if property-isprimarykey}} // Primary Key{{/if}}
 {{/each}}
 {{#if nav-properties}}
 

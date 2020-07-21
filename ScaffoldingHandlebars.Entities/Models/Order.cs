@@ -10,7 +10,7 @@ namespace ScaffoldingHandlebars.Entities.Models
             OrderDetail = new List<OrderDetail>();
         }
 
-        public int OrderId { get; set; } = default!;
+        public int OrderId { get; set; } = default!; // Primary Key
         public string? CustomerId { get; set; }
         public DateTime? OrderDate { get; set; }
         public DateTime? ShippedDate { get; set; }

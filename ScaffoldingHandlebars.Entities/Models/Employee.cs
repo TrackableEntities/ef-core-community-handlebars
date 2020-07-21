@@ -10,7 +10,7 @@ namespace ScaffoldingHandlebars.Entities.Models
             EmployeeTerritories = new List<EmployeeTerritories>();
         }
 
-        public int EmployeeId { get; set; } = default!;
+        public int EmployeeId { get; set; } = default!; // Primary Key
         public string LastName { get; set; } = default!;
         public string FirstName { get; set; } = default!;
         public DateTime? BirthDate { get; set; }

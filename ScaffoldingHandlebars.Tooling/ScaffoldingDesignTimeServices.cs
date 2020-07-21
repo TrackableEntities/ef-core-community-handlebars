@@ -1,5 +1,6 @@
 ﻿using EntityFrameworkCore.Scaffolding.Handlebars;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Scaffolding.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using ScaffoldingHandlebars.Entities;
 using System.Diagnostics;
@@ -29,6 +30,9 @@ namespace ScaffoldingHandlebars.Tooling
                     ? new EntityPropertyInfo(nameof(Country), nameof(Country), e.PropertyIsNullable)
                     : new EntityPropertyInfo(e.PropertyType, e.PropertyName, e.PropertyIsNullable)
             );
+
+            // Add MyHbsCSharpEntityTypeGenerator
+            services.AddSingleton<ICSharpEntityTypeGenerator, MyHbsCSharpEntityTypeGenerator>();
         }
     }
 }

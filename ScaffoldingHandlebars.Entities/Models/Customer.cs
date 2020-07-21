@@ -13,7 +13,7 @@ namespace ScaffoldingHandlebars.Entities.Models
             Order = new List<Order>();
         }
 
-        public string CustomerId { get; set; } = default!;
+        public string CustomerId { get; set; } = default!; // Primary Key
         /// <summary>
         /// hello CompanyName
         /// </summary>

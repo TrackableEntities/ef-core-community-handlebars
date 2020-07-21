@@ -5,7 +5,7 @@ namespace ScaffoldingHandlebars.Entities.Models
 {
     public partial class OrderDetail : EntityBase // My Handlebars Helper: OrderDetail
     {
-        public int OrderDetailId { get; set; } = default!;
+        public int OrderDetailId { get; set; } = default!; // Primary Key
         public int OrderId { get; set; } = default!;
         public int ProductId { get; set; } = default!;
         public decimal UnitPrice { get; set; } = default!;
