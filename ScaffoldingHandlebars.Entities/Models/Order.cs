@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ScaffoldingHandlebars.Entities.Models
 {
-    public partial class Order : EntityBase
+    public partial class Order : EntityBase // My Handlebars Helper: Order
     {
         public Order()
         {

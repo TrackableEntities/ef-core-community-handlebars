@@ -17,6 +17,10 @@ namespace ScaffoldingHandlebars.Entities
         public virtual DbSet<Product> Product { get; set; } = default!;
         public virtual DbSet<Territory> Territory { get; set; } = default!;
 
+        public NorthwindSlimContext()
+        {
+        }
+
         public NorthwindSlimContext(DbContextOptions<NorthwindSlimContext> options) : base(options)
         {
         }

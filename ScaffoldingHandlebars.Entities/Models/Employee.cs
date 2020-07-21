@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ScaffoldingHandlebars.Entities.Models
 {
-    public partial class Employee : EntityBase
+    public partial class Employee : EntityBase // My Handlebars Helper: Employee
     {
         public Employee()
         {
@@ -16,7 +16,7 @@ namespace ScaffoldingHandlebars.Entities.Models
         public DateTime? BirthDate { get; set; }
         public DateTime? HireDate { get; set; }
         public string? City { get; set; }
-        public string? Country { get; set; }
+        public Country Country { get; set; }
 
         public virtual List<EmployeeTerritories> EmployeeTerritories { get; set; } = default!;
     }

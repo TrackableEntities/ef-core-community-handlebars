@@ -32,7 +32,8 @@ Demos for July 2020 EF Core Community Standup
    - Modify the **CSharpEntityType/Class.hbs** file to derive from `EntityBase`.
    - Add `EntityBase` class to the project.
    - Modify **CSharpEntityType/Partials/Properties.hbs** to change `ICollection` to `List`.
-   - Update **CSharpEntityType/Partials/Constructor.hbs** to change `HashSet` to `List`.
+   - Update **CSharpEntityType/Partials/Constructor.hbs** change `HashSet` to `List`.
+   - Add a parameterless constructor to **CSharpDbContext/Partials/Constructor.hbs**.
    - Remove `connectionstring-warning` from **CSharpDbContext/Partials/DbOnConfiguring.hbs**
    - Rerun the EF Core Power Tools.
 
@@ -102,11 +103,86 @@ Demos for July 2020 EF Core Community Standup
 3. Update `services.AddHandlebarsScaffolding` in `ScaffoldingDesignTimeServices` in the **.Tooling** project to enable nullable reference types.
    ```csharp
    services.AddHandlebarsScaffolding(options =>
-   {
-      options.EnableNullableReferenceTypes = true;
-   });
+      options.EnableNullableReferenceTypes = true
+   );
    ```
 4. Run the `dotnet ef dbcontext scaffold` command.
    - Use the same command as shown above.
    - Notive that _optional_ properties for reference types are set to [nullable](https://docs.microsoft.com/en-us/dotnet/csharp/nullable-references) by appending a `?` to the type.
    - Notice that _required_ properties are set using the [null forgiving operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-forgiving), which eliminates compiler warnings.
+
+### 5. Handlebars Helpers
+
+1. Update `ScaffoldingDesignTimeServices.ConfigureDesignTimeServices` in the **.Tooling** project by adding a call to `services.AddHandlebarsHelpers`.
+   ```csharp
+   services.AddHandlebarsHelpers(("my-helper", (writer, context, parameters) =>
+      writer.Write($"// My Handlebars Helper: {context["class"]}")
+   ));
+   ```
+2. Update **CSharpEntityType/Class.hbs** to add `{{my-helper}}`
+3. Run the `dotnet ef dbcontext scaffold` command from above.
+4. To inspect the `context` variable, add a breakpoint inside the lambda statement, then add the following line of code in `ConfigureDesignTimeServices`.
+   ```csharp
+   Debugger.Launch();
+   ```
+5. When the scaffolding command is run you will be prompted to select an instance of Visual Studio for attaching the JIT Debugger.
+   - When the breakpoint is hit you can inspect the content of the `context` parameter.
+
+### 6. Handlebars Transformers
+
+> **Handlebars Transformers** are a lightweight mechanism for transforming entities and their members. For example, this can allow you to change a property from a `string` to an `enum`.
+> 
+> In this example we will change the `Country` property of `Employee` from `string` to an enum called `Country` with values that match data in the `Employee` and tables.
+
+1. Add a `Country` enum to the **.Entities** project.
+   ```csharp
+   public enum Country
+   {
+      UK = 1,
+      USA = 2
+   }
+   ```
+2. Add a call to `services.AddHandlebarsTransformers` to `ConfigureDesignTimeServices`, in which you pass a property transformer.
+   ```csharp
+   services.AddHandlebarsTransformers(propertyTransformer: e =>
+      e.PropertyName == nameof(Country)
+         ? new EntityPropertyInfo(nameof(Country), nameof(Country), e.PropertyIsNullable)
+         : new EntityPropertyInfo(e.PropertyType, e.PropertyName, e.PropertyIsNullable)
+   );
+   ```
+3. To test this add a .NET Core console app with a **.ConsoleClient** suffix.
+   - Add **Microsoft.EntityFrameworkCore.SqlServer** package.
+   - Reference both **.Data** and **.Entities** projects.
+   - Add code to `Program.Main` for displaying name, city and country for `Employees`.
+   ```csharp
+   using (var context = new NorthwindSlimContext())
+   {
+      var employees = context.Employee.Select(e =>
+         new { Name = $"{e.FirstName} {e.LastName}", e.City, e.Country });
+      foreach (var e in employees)
+      {
+         Console.WriteLine($"{e.Name} {e.City} {e.Country} ");
+      }
+   }  
+   ```
+   - Press Ctrl+F5 to run the console client.
+   - Notice the `InvalidCastException` converting `string` to `int`.
+4. To fix the error add a **NorthwindSlimContextPartial.cs** file with a partial `NorthwindSlimContext` class that implements the partial `OnModelCreatingPartial` method.
+   - Specify `HasConversion` for the `Employee.Country` property, converting the `Country` property between `string` and the `Country` enum.
+   ```csharp
+   namespace ScaffoldingHandlebars.Entities
+   {
+      public partial class NorthwindSlimContext
+      {
+         partial void OnModelCreatingPartial(ModelBuilder modelBuilder)
+         {
+               modelBuilder.Entity<Employee>()
+                  .Property(e => e.Country)
+                  .HasConversion(
+                     v => v.ToString(),
+                     v => (Country)Enum.Parse(typeof(Country), v));
+         }
+      }
+   }
+   ```
+5. Re-run the console client.
