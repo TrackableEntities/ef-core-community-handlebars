@@ -1,6 +1,6 @@
 # EF Core Community Standup: Scaffolding with Handlebars Templates
 
-Demos for July 2020 EF Core Community Standup
+Demos for [July 2020 EF Core Community Standup](https://youtu.be/6Ux7EpgiWXE).
 
 > **Prerequisites**:
 > - [NorthwindSlim](https://github.com/TrackableEntities/northwind-slim) sample database.
